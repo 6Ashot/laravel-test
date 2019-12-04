@@ -13,7 +13,6 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('firstName');

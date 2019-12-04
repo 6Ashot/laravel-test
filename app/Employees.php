@@ -13,5 +13,10 @@ class Employees extends Model
     'email',
     'phone'
   ];
+  public $timestamps = false;
+  public function company(){
+  	return $this->hasOne('App\Companies', 'id', 'company_id');
+  }
+  
  
 }
