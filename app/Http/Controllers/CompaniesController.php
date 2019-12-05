@@ -41,7 +41,7 @@ class CompaniesController extends Controller
     public function store(CreateCompanieRequest $request)
     {
         $fileName = '';
-        if($request->file('logo')){
+        if ($request->file('logo')) {
             $fileName = $request->file('logo')->store('/public');
             $fileName = str_replace('public', 'storage', $fileName);
         }
@@ -66,6 +66,7 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -93,8 +94,8 @@ class CompaniesController extends Controller
         $company->name = $request->input('name');
         $company->email = $request->input('email');
         $company->website = $request->input('website');
-        if($request->logo){
-            if($company->logo != '') {
+        if ($request->logo) {
+            if ($company->logo != '') {
                 unlink(storage_path('app/public/'.str_replace('storage/', '', $company->logo)));
             }
             $fileName = $request->file('logo')->store('/public');
@@ -105,9 +106,6 @@ class CompaniesController extends Controller
         $company->save();
         Session::flash('message', 'Company '.$company->name.' was updated!'); 
         return redirect('companies');
-
-
-        
     }
 
     /**
@@ -119,7 +117,7 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         $company = Companies::find($id);
-        if($company->logo != '') {
+        if ($company->logo != '') {
             unlink(storage_path('app/public/'.str_replace('storage/', '', $company->logo)));
         }
         $company->delete();

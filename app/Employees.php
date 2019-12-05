@@ -14,9 +14,8 @@ class Employees extends Model
     'phone'
   ];
   public $timestamps = false;
-  public function company(){
-  	return $this->hasOne('App\Companies', 'id', 'company_id');
-  }
-  
- 
+  public function company()
+  {
+      return $this->hasOne('App\Companies', 'id', 'company_id');
+  } 
 }

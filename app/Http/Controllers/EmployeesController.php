@@ -8,7 +8,6 @@ use App\Companies;
 use Session;
 use App\Http\Requests\CreateEmployeeRequest;
 
-
 class EmployeesController extends Controller
 {
     /**
@@ -41,7 +40,6 @@ class EmployeesController extends Controller
      */
     public function store(CreateEmployeeRequest $request)
     {
-        
         Employees::create([
             'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
