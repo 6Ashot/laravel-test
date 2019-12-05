@@ -23,8 +23,12 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('companies','CompaniesController');
-Route::resource('employees','EmployeesController');
+Route::resource('companies','CompaniesController', [
+    'except' => [ 'show' ]
+]);
+Route::resource('employees','EmployeesController', [
+    'except' => [ 'show' ]
+]);
 
 Auth::routes(['register' => false]);
 

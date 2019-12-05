@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Companies extends Model
+class Company extends Model
 {
    protected $fillable = [
     'name',
@@ -15,6 +15,6 @@ class Companies extends Model
   public $timestamps = false;
   public function employee()
   {
-      return $this->belongsTo('App\Employees');
+      return $this->belongsTo('App\Models\Employee');
   }
 }

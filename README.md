@@ -77,3 +77,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # laravel-test
+
+
+## Installation Steps
+1. git clone https://github.com/6Ashot/laravel-test
+2. cd laravel-test
+3. composer install
+4. php artisan migrate
+5. php artisan db:seed
+6. php artisan serve

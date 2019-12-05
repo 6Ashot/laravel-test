@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employees;
-use App\Companies;
+use App\Models\Employee;
+use App\Models\Company;
 use Session;
 use App\Http\Requests\CreateEmployeeRequest;
 
@@ -17,8 +17,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = Employees::paginate(10);
-        return view('employees')->with(compact('employees'));
+        $employees = Employee::paginate(10);
+        return view('employee.Index')->with(compact('employees'));
     }
 
     /**
@@ -28,8 +28,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        $companies = Companies::all();
-        return view('createEmployee')->with(compact('companies'));
+        $companies = Company::all();
+        return view('employee.Create')->with(compact('companies'));
     }
 
     /**
@@ -40,7 +40,7 @@ class EmployeesController extends Controller
      */
     public function store(CreateEmployeeRequest $request)
     {
-        Employees::create([
+        Employee::create([
             'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
             'company_id' => $request['company_id'],
@@ -57,10 +57,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -70,9 +67,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employees::find($id);
-        $companies = Companies::all();
-        return view('updateEmployee')->with(compact('employee'))->with(compact('companies'));
+        $employee = Employee::find($id);
+        $companies = Company::all();
+        return view('employee.Edit')->with(compact('employee'))->with(compact('companies'));
     }
 
     /**
@@ -84,7 +81,7 @@ class EmployeesController extends Controller
      */
     public function update(CreateEmployeeRequest $request, $id)
     {
-        $employee = Employees::find($id);
+        $employee = Employee::find($id);
         $employee->firstName = $request->input('firstName');
         $employee->lastName = $request->input('lastName');
         $employee->company_id = $request->input('company_id');
@@ -102,7 +99,7 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        $employee = Employees::find($id);
+        $employee = Employee::find($id);
         $employee->delete();
         Session::flash('message', 'Recording was removed'); 
         return redirect()->back();

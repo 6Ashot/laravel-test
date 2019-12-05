@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <a class="" href="{{route('employees.create')}}">Create Companie</a>
+            <a class="" href="{{route('employees.create')}}">Add employee</a>
             <br>
             @if(Session::has('message'))
                 <h1 align="center">{{Session::get('message')}}</h1>

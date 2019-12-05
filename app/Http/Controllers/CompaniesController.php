@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Companies;
+use App\Models\Company;
 use App\Http\Requests\CreateCompanieRequest;
 use Session;
 use Illuminate\Support\Facades\File;
@@ -17,8 +17,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $companies = Companies::paginate(10);
-        return view('companies')->with(compact('companies'));;
+        $companies = Company::paginate(10);
+        return view('company.Index')->with(compact('companies'));;
         
     }
 
@@ -29,7 +29,7 @@ class CompaniesController extends Controller
      */
     public function create()
     {
-        return view('createCompanie');
+        return view('company.Create');
     }
 
     /**
@@ -45,7 +45,7 @@ class CompaniesController extends Controller
             $fileName = $request->file('logo')->store('/public');
             $fileName = str_replace('public', 'storage', $fileName);
         }
-        Companies::create([
+        Company::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'logo' => $fileName,
@@ -57,17 +57,12 @@ class CompaniesController extends Controller
     }
 
     /**
-        $fileName = 'uploads/'.time().'.'.$request->logo->extension();
-        $request->logo->move(public_path('uploads'), $fileName);
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -77,8 +72,8 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        $company = Companies::find($id);
-        return view('updateCompany')->with(compact('company'));
+        $company = Company::find($id);
+        return view('company.Edit')->with(compact('company'));
     }
 
     /**
@@ -90,7 +85,7 @@ class CompaniesController extends Controller
      */
     public function update(CreateCompanieRequest $request, $id)
     {
-        $company = Companies::find($id);
+        $company = Company::find($id);
         $company->name = $request->input('name');
         $company->email = $request->input('email');
         $company->website = $request->input('website');
@@ -116,7 +111,7 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        $company = Companies::find($id);
+        $company = Company::find($id);
         if ($company->logo != '') {
             unlink(storage_path('app/public/'.str_replace('storage/', '', $company->logo)));
         }

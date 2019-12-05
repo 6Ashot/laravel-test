@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employees extends Model
+class Employee extends Model
 {
    protected $fillable = [
     'firstName',
@@ -16,6 +16,6 @@ class Employees extends Model
   public $timestamps = false;
   public function company()
   {
-      return $this->hasOne('App\Companies', 'id', 'company_id');
+      return $this->hasOne('App\Models\Company', 'id', 'company_id');
   } 
 }
