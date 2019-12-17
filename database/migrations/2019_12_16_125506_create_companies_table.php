@@ -13,7 +13,7 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+         Schema::create('companies', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->string('name');
@@ -25,7 +25,6 @@ class CreateCompaniesTable extends Migration
     }
 
     /**
-    
      * Reverse the migrations.
      *
      * @return void

@@ -18,18 +18,17 @@ class CreateEmployeesTable extends Migration
             $table->bigIncrements('id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->bigInteger('company_id')->unsigned()->index();
-            $table->string('email');
-            $table->string('phone');
-        });
-
-        Schema::table('employees', function(Blueprint $table) {
+            $table->bigInteger('company_id')->unsigned();
             $table->foreign('company_id')
                 ->references('id')
                 ->on('companies')
-                ->onDelete('cascade');
-            
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('email');
+            $table->string('phone');
+                
         });
+
     }
 
     /**
